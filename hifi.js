@@ -1,10 +1,9 @@
 let docBody = document.getElementById('body');
 
 function getProducts(){
-    fetch('http://localhost/phpWebservice/produits?')
+    fetch('http://localhost/phpWebservice/produits',{method:'GET'})
     .then(response => response.json())
     .then(data => {
-        console.log(data);
         let table = document.createElement('table');
         let tbody = document.createElement('tbody');
         

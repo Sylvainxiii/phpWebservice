@@ -9,10 +9,7 @@
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         header("Content-Type: application/json");
-        // $product = json_encode($response, JSON_PRETTY_PRINT);
         echo json_encode($result, JSON_PRETTY_PRINT);
-
-        // return $product;
     }
 
     switch($request_method){
