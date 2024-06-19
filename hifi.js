@@ -10,20 +10,20 @@ function getProducts(){
         for (let $i = 0; $i < data.length; $i = $i + 1) {
             
             //Récupération des données de L'api
+            id = data[$i]['product_id'];
             nom = data[$i]['product_name'];
             annee = data[$i]['model_year'];
             prix = data[$i]['list_price'];
+            colonneTable=[nom, annee, prix];
             
             let ligne = document.createElement('tr');
-            let cellule1 = document.createElement('td');
-            cellule1.innerHTML = nom;
-            ligne.appendChild(cellule1);
-            let cellule2 = document.createElement('td');
-            cellule2.innerHTML = annee;
-            ligne.appendChild(cellule2);
-            let cellule3 = document.createElement('td');
-            cellule3.innerHTML = prix;
-            ligne.appendChild(cellule3);
+            ligne.id = id;
+            for ($y=0; $y<colonneTable.length; $y = $y + 1){
+
+            let cellule = document.createElement('td');
+            cellule.innerHTML = colonneTable[$y];
+            ligne.appendChild(cellule);
+            }
             tbody.appendChild(ligne);
             }
             
