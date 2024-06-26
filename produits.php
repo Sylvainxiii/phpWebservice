@@ -16,9 +16,21 @@ function getProduct($pdo, $id = 0)
     echo json_encode($result, JSON_PRETTY_PRINT);
 }
 
+function deleteProduct($pdo, $id = 0)
+{
+    $sql = "DELETE FROM products WHERE product_id=" . $id;
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    return true;
+}
+
 switch ($request_method) {
     case 'GET':
         $id = intval($_GET["id"]);
         getProduct($pdo, $id);
+        break;
+    case 'DELETE':
+        $id = intval($_GET["id"]);
+        deleteProduct($pdo, $id);
         break;
 }

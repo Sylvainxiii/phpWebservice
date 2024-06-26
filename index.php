@@ -20,6 +20,8 @@
             <input type="text" class="form-control" id="id">
         </div>
         <button type="submit" class="btn btn-primary" id="getIdBtn">Afficher le produit</button>
+        <button type="submit" class="btn btn-primary" id="addIdBtn">Ajouter un produit</button>
+        <button type="submit" class="btn btn-primary" id="deleteIdBtn">Supprimer le produit</button>
     </form>
     <table id="listTable">
         <tbody id="listTbody">

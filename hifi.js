@@ -1,12 +1,14 @@
 let docBody = document.getElementById('body');
 let getIdBtn = document.getElementById('getIdBtn');
+let deleteIdBtn = document.getElementById('deleteIdBtn');
 let listTable = document.getElementById('listTable');
 let listTbody = document.getElementById('listTbody');
+let champId = document.getElementById('id');
 
 function getProducts() {
     listTbody.innerHTML = "";
 
-    let inputId = document.getElementById('id').value;
+    let inputId = champId.value;
     if (inputId == "") {
         inputId = 0;
     }
@@ -52,12 +54,38 @@ function getProducts() {
         })
 }
 
+function deleteProducts() {
+    let inputId = champId.value;
+    if (inputId == "") {
+        alert("Veuillez renseigner un id")
+    }
+
+    let url = 'http://localhost/phpWebservice/produits?id=' + inputId;
+
+    fetch(url, { method: 'DELETE' })
+        .then(() => alert("suppression ok"))
+        .catch((error) => {
+            if (error) {
+                alert('error');
+                return;
+            }
+            return;
+        })
+}
 
 
 document.onload = getProducts();
 
 getIdBtn.addEventListener("click", function (event) {
     event.preventDefault();
+    getProducts();
+})
+
+deleteIdBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    deleteProducts();
+    debugger
+    champId.value = "";
     getProducts();
 })
 
