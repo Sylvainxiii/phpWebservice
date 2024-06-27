@@ -73,6 +73,40 @@ function deleteProducts() {
         })
 }
 
+function addProducts() {
+
+    let nom = document.getElementById('nom').value;
+    let brandId = document.getElementById('brandId').value;
+    let categoryId = document.getElementById('categoryId').value;
+    let price = document.getElementById('price').value;
+    let year = document.getElementById('year').value;
+
+    let url = 'http://localhost/phpWebservice/produits.php';
+
+    fetch(url, {
+        method: 'POST',
+        body: JSON.stringify({
+            "product_name": nom,
+            "brand_id": brandId,
+            "category_id": categoryId,
+            "list_price": price,
+            "model_year": year
+        }),
+        headers: {
+            "Content-type": "application/json"
+        }
+    })
+        .then(response => response.json())
+        .then((data) =>
+            console.log(data))
+        .catch((error) => {
+            if (error) {
+                alert('error');
+                return;
+            }
+            return;
+        })
+}
 
 document.onload = getProducts();
 
@@ -86,6 +120,12 @@ deleteIdBtn.addEventListener("click", function (event) {
     deleteProducts();
     debugger
     champId.value = "";
+    getProducts();
+})
+
+addIdBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    addProducts();
     getProducts();
 })
 

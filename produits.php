@@ -16,6 +16,17 @@ function getProduct($pdo, $id = 0)
     echo json_encode($result, JSON_PRETTY_PRINT);
 }
 
+function addProduct($pdo)
+{
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    $sql = "INSERT INTO products(product_name, brand_id, category_id, list_price, model_year ) VALUES (:nom, :brand, :category, :price, :modelyear)";
+    $stmt = $pdo->prepare($sql);
+    $params = ["nom" => $data["product_name"], "brand" => $data["brand_id"], "category" => $data["category_id"], "price" => $data["list_price"], "modelyear" => $data["model_year"]];
+    $stmt->execute($params);
+    return true;
+}
+
 function deleteProduct($pdo, $id = 0)
 {
     $sql = "DELETE FROM products WHERE product_id=" . $id;
@@ -32,5 +43,10 @@ switch ($request_method) {
     case 'DELETE':
         $id = intval($_GET["id"]);
         deleteProduct($pdo, $id);
+        getProduct($pdo);
+        break;
+    case 'POST':
+        addProduct($pdo);
+        getProduct($pdo);
         break;
 }

@@ -19,9 +19,30 @@
             <label for="id" class="form-label">ID Produit</label>
             <input type="text" class="form-control" id="id">
         </div>
+        <div class="mb-3">
+            <label for="nom" class="form-label">Nom</label>
+            <input type="text" class="form-control" id="nom">
+        </div>
+        <div class="mb-3">
+            <label for="brandId" class="form-label">ID Marque</label>
+            <input type="text" class="form-control" id="brandId">
+        </div>
+        <div class="mb-3">
+            <label for="categoryId" class="form-label">ID Categorie</label>
+            <input type="text" class="form-control" id="categoryId">
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Prix</label>
+            <input type="text" class="form-control" id="price">
+        </div>
+        <div class="mb-3">
+            <label for="year" class="form-label">Année</label>
+            <input type="text" class="form-control" id="year">
+        </div>
         <button type="submit" class="btn btn-primary" id="getIdBtn">Afficher le produit</button>
-        <button type="submit" class="btn btn-primary" id="addIdBtn">Ajouter un produit</button>
-        <button type="submit" class="btn btn-primary" id="deleteIdBtn">Supprimer le produit</button>
+        <button type="submit" class="btn btn-success" id="addIdBtn">Ajouter un produit</button>
+        <button type="submit" class="btn btn-warning" id="editIdBtn">Editer un produit</button>
+        <button type="submit" class="btn btn-danger" id="deleteIdBtn">Supprimer le produit</button>
     </form>
     <table id="listTable">
         <tbody id="listTbody">
