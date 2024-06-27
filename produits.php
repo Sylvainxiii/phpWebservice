@@ -27,6 +27,18 @@ function addProduct($pdo)
     return true;
 }
 
+function editProduct($pdo)
+{
+    $data = json_decode(file_get_contents("php://input"), true);
+
+    $sql = "UPDATE products SET product_name = :nom, brand_id =:brand , category_id = :category, list_price = :price, model_year = :modelyear 
+    WHERE product_id = :id";
+    $stmt = $pdo->prepare($sql);
+    $params = ["id" => $data["id"], "nom" => $data["product_name"], "brand" => $data["brand_id"], "category" => $data["category_id"], "price" => $data["list_price"], "modelyear" => $data["model_year"]];
+    $stmt->execute($params);
+    return true;
+}
+
 function deleteProduct($pdo, $id = 0)
 {
     $sql = "DELETE FROM products WHERE product_id=" . $id;
@@ -43,10 +55,11 @@ switch ($request_method) {
     case 'DELETE':
         $id = intval($_GET["id"]);
         deleteProduct($pdo, $id);
-        getProduct($pdo);
         break;
     case 'POST':
         addProduct($pdo);
-        getProduct($pdo);
+        break;
+    case 'PUT':
+        editProduct($pdo);
         break;
 }
